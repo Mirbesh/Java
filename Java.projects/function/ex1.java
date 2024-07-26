@@ -9,15 +9,32 @@ public class ex1 {
         Notebook laptop2 = new Notebook(2, " Toshiba Satellite C660-16D", "Black", "Linux", "1 Tb", 32);
         Notebook laptop3 = new Notebook(3, "Lenovo Ideapad 3", "Blue", "DOS", "500 Gb", 8);
         Notebook laptop4 = new Notebook(4, "Asus Vivobook 15", "Silver", "Ubuntu", "500 Gb", 12);
-         
-        Set<Notebook> laptops = new HashSet<>(Arrays.asList(laptop1, laptop2, laptop3));
-        laptops.add(laptop4);
-        System.out.println(laptops.iterator().next());
-        laptops.remove(laptop1);
-        System.out.println();
-        System.out.println(laptops.size());
+        
+        System.out.println("Выберите критерий для фильтрации:");
+        System.out.println("1 - ОЗУ");
+        System.out.println("2 - Объем ЖД");
+        System.out.println("3 - Операционная система");
+        System.out.println("4 - Цвет");
 
 
+        // System.out.print("Введите Размер ОЗУ: ");
+        // Scanner scan = new Scanner(System.in);
+        // Integer ozu = scan.nextInt();
+        
+        Set<Notebook> laptops = new HashSet<>(Arrays.asList(laptop1, laptop2, laptop3,laptop4));
+        Iterator<Notebook> lap = laptops.contains(laptop1);
+        while (lap.hasNext()) {
+            System.out.println(lap.next());
+            System.out.println();
+            
+        }
+
+        // public static Integer memoryChoice (Integer choice) {
+        //     Scanner scan = new Scanner(System.in);
+        //     Integer choice = scan.nextInt();
+        //     if (choice == 1)
+
+        // }
 
         // HashSet<Notebook> laptops2 = new HashSet<>();
         // long start = System.currentTimeMillis();
