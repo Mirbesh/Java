@@ -19,6 +19,14 @@ public class Notebook {
     }
 
     @Override
+    public boolean isMemory(Integer ozu) {
+        boolean res = true;
+        if(this.memory != ozu)
+            res = false;
+        return res;
+    }
+
+    @Override
     public String toString() {
         return "Модель: " + this.model + "\nЦвет: " + this.color + "\nОперационная система: " + this.os
                 + "\nЖесткий диск: "
