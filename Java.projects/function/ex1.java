@@ -3,83 +3,66 @@ package function;
 import java.util.*;
 
 public class ex1 {
+
     public static void main(String[] args) {
-        
-        Notebook laptop1 = new Notebook(1, "Acer Aspare 3", "Blue", "Windows", "1 Tb", 16);
-        Notebook laptop2 = new Notebook(2, " Toshiba Satellite C660-16D", "Black", "Linux", "1 Tb", 32);
-        Notebook laptop3 = new Notebook(3, "Lenovo Ideapad 3", "Blue", "DOS", "500 Gb", 8);
-        Notebook laptop4 = new Notebook(4, "Asus Vivobook 15", "Silver", "Ubuntu", "500 Gb", 12);
-        
-        Integer choice = getChoice();
-        
-        while (0 > choice || choice > 4){
-            System.out.println("Вы выбрали не правильную цифру. Выберите заново.\n");
-            getChoice();
-        }
-        // if (choice == 1){
-        //     choiceMemory();
-        // }
-        // if (choice == 2){
-        //     choiceHardDisk();
-        // }
-        // if (choice == 3){
-        //     choiceOS();
-        // }
-        // if (choice == 4){
-        //     choiceColor();
-        // }
-        if (choice == 0){
-            System.out.print("Спасибо за обращение!"); 
-        }
 
-        
+        Notebook laptop1 = new Notebook(1, "Acer Aspare 3", "Blue", "Windows", 1, "Tb", 16);
+        Notebook laptop2 = new Notebook(2, " Toshiba Satellite C660-16D", "Black", "Linux", 1, "Tb", 32);
+        Notebook laptop3 = new Notebook(3, "Lenovo Ideapad 3", "Blue", "DOS", 500, "Gb", 8);
+        Notebook laptop4 = new Notebook(4, "Asus Vivobook 15", "Silver", "Ubuntu", 500, "Gb", 12);
         Set<Notebook> laptops = new HashSet<>(Arrays.asList(laptop1, laptop2, laptop3, laptop4));
-        for (Notebook notebook : laptops) {
-            System.out.println(notebook);
-            
-        }
+        getChoice(laptops);
 
-        // public static choiceMemory() {
-        //     System.out.print("Введите Размер ОЗУ: ");
-        //     Scanner scan = new Scanner(System.in);
-        //     Integer ozu = scan.nextInt();
-        //     getChoice();
-        // }
-        // public static choiceHardDisk() {
-        //     System.out.print("Введите Размер жесткого диска: ");
-        //     Scanner scan = new Scanner(System.in);
-        //     Integer harDisk = scan.nextInt();
-        //     getChoice();
-        // }
-        // public static choiceOS() {
-        //     System.out.print("Введите имя операционной системы: ");
-        //     Scanner scan = new Scanner(System.in);
-        //     Integer os = scan.nextInt();
-        //     getChoice();
-        // }
-        // public static choiceColor() {
-        //     System.out.print("Введите имя операционной системы: ");
-        //     Scanner scan = new Scanner(System.in);
-        //     Integer color = scan.nextInt();
-        //     getChoice();
-        // }
-
-        // HashSet<Notebook> laptops2 = new HashSet<>();
-        // long start = System.currentTimeMillis();
-        // for (int i = 0; i < 10_000; i++) {
-        //     laptops2.add(new Notebook(null, null, null, null, null, null));
-        // }
-        // long end = System.currentTimeMillis();
-        // System.out.println("Время создания: " + (end - start));
-        // start = System.currentTimeMillis();
-        // for (int i = 0; i < 10_000; i++) {
-        //     laptops.contains(laptop1);
-        // }
-        // end = System.currentTimeMillis();
-        // System.out.println("Время проверки: " + (end - start));
     }
 
-    private static Integer getChoice() {
+    private static void choiceMemory(Set<Notebook> laptops) {
+        System.out.println("Введите размер ОЗУ: ");
+        Scanner scan = new Scanner(System.in);
+        Integer ozu = scan.nextInt();
+        for (Notebook notebook : laptops) {
+            if (notebook.findIsMemory(ozu)) {
+                System.out.println(notebook);
+            }
+        }
+        getChoice(laptops);
+    }
+
+    private static void choiceHardDisk(Set<Notebook> laptops) {
+        System.out.println("Введите размер жесткого диска: ");
+        Scanner scan = new Scanner(System.in);
+        Integer hardDisk = scan.nextInt();
+        for (Notebook notebook : laptops) {
+            if (notebook.findIsHardDisk(hardDisk)) {
+                System.out.println(notebook);
+            }
+        }
+        getChoice(laptops);
+    }
+
+    private static void choiceOS(Set<Notebook> laptops) {
+        System.out.println("Введите имя операционной системы: ");
+        Scanner scan = new Scanner(System.in);
+        String os = scan.nextLine();
+        for (Notebook notebook : laptops) {
+            if (notebook.findIsOs(os)) {
+                System.out.println(notebook);
+            }
+        }
+        getChoice(laptops);    
+    }
+    private static void choiceColor(Set<Notebook> laptops) {
+        System.out.println("Введите цвет ноутбука: ");
+        Scanner scan = new Scanner(System.in);
+        String color = scan.nextLine();
+        for (Notebook notebook : laptops) {
+            if (notebook.findIsColor(color)) {
+                System.out.println(notebook);
+            }
+        }
+        getChoice(laptops);    
+    }  
+    
+    private static Integer getChoice(Set<Notebook> laptops) {
         System.out.println("Выберите критерий для фильтрации:");
         System.out.println("1 - ОЗУ");
         System.out.println("2 - Объем ЖД");
@@ -88,7 +71,27 @@ public class ex1 {
         System.out.println("0 - Выход из программы");
         Scanner scan = new Scanner(System.in);
         Integer choice = scan.nextInt();
+        while (0 > choice || choice > 4) {
+            System.out.println("Вы выбрали не правильную цифру. Выберите заново.\n");
+            getChoice(laptops);
+        }
+        if (choice == 1) {
+            choiceMemory(laptops);
+        }
+        if (choice == 2) {
+            choiceHardDisk(laptops);
+        }
+        if (choice == 3){
+            choiceOS(laptops);
+        }
+        if (choice == 4){
+            choiceColor(laptops);
+        }
+        if (choice == 0) {
+            System.out.print("Спасибо за обращение!");
+        }
         return choice;
-    }
+     
+    } 
 
 }

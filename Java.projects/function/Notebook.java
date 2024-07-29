@@ -1,28 +1,52 @@
 package function;
 
 public class Notebook {
-    private String hardDisk, model, color, os;
-    private Integer id, memory;
+    private String hardDiskUnit, model, color, os;
+    private Integer id, hardDisk, memory;
 
-    public Notebook(Integer id, String model, String color, String os, String hardDisk, Integer memory) {
-        setValues(id, model, color, os, hardDisk, memory);
+    public Notebook(Integer id, String model, String color, String os, Integer hardDisk, String hardDiskUnit, Integer memory) {
+        setValues(id, model, color, os, hardDisk, hardDiskUnit, memory);
 
     }
 
-    public void setValues(Integer id, String model, String color, String os, String hardDisk, Integer memory) {
+    public void setValues(Integer id, String model, String color, String os, Integer hardDisk, String hardDiskUnit, Integer memory) {
         this.id = id;
         this.hardDisk = hardDisk;
+        this.hardDiskUnit = hardDiskUnit;
         this.model = model;
         this.color = color;
         this.os = os;
         this.memory = memory;
     }
 
-    @Override
-    public boolean isMemory(Integer ozu) {
-        boolean res = true;
-        if(this.memory != ozu)
-            res = false;
+    public Boolean findIsMemory(Integer ozu) {
+        boolean res = false;
+        if (this.memory == ozu) {
+            res = true;
+        }
+        return res;
+    }
+    public Boolean findIsHardDisk(Integer hardDisk) {
+        boolean res = false;
+        if (this.hardDisk == hardDisk) {
+            res = true;
+        }
+        return res;
+    }
+
+    public Boolean findIsOs(String os) {
+        boolean res = false;
+        if (this.os.toLowerCase() == os.toLowerCase()) {
+            res = true;
+        }
+        return res;
+    }
+    
+    public Boolean findIsColor(String color) {
+        boolean res = false;
+        if (this.color.toLowerCase() == color.toLowerCase()) {
+            res = true;
+        }
         return res;
     }
 
@@ -30,7 +54,7 @@ public class Notebook {
     public String toString() {
         return "Модель: " + this.model + "\nЦвет: " + this.color + "\nОперационная система: " + this.os
                 + "\nЖесткий диск: "
-                + this.hardDisk + "\nОЗУ: " + this.memory;
+                + this.hardDisk + " " + this.hardDiskUnit + "\nОЗУ: " + this.memory;
 
     }
 
